@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help / FAQ</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 15px;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      background-color: #0056b3;
+    }
+
+    nav a.active {
+      background-color: #004085;
+    }
+
+    /* Main content container */
+    .container {
+      margin-top: 70px; /* Space for the navbar */
+      padding: 30px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .section {
+      background-color: white;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h3, .section h4 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .section p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    /* Spacing for better layout */
+    .section button {
+      margin-top: 15px;
+      width: 200px;
+      margin-right: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="home2.html">home</a>
+    <a href="#faq" onclick="navigateTo('faq')" class="active">Help / FAQ</a>
+    <a href="home.html" onclick="logout()">Log Out</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    
+    <!-- Help / FAQ Section -->
+    <div id="faq" class="section">
+      <h3>Help & FAQ</h3>
+
+      <!-- Frequently Asked Questions -->
+      <div class="section">
+        <h4>What is Fraud Detection?</h4>
+        <p>Fraud detection refers to the process of identifying fraudulent activities, transactions, or behaviors that may harm the system or platform.</p>
+        
+        <h4>How do I enable Fraud Detection?</h4>
+        <p>You can enable fraud detection from your settings page under "Fraud Detection Settings".</p>
+        
+        <h4>How do I receive fraud alerts?</h4>
+        <p>You can choose to receive fraud alerts via email or SMS from your notification settings in the settings page.</p>
+
+        <h4>How do I change my account settings?</h4>
+        <p>You can modify your email, password, and other personal information from the "Account Settings" section on the settings page.</p>
+
+        <h4>Can I download reports from the platform?</h4>
+        <p>Yes, reports can be downloaded directly from the dashboard in the "Reports" section.</p>
+      </div>
+
+      <!-- Contact Support -->
+      <div class="section">
+        <h4>Contact Support</h4>
+        <p>If you need further assistance, please feel free to reach out to us:</p>
+        <ul>
+          <li>Email: <a href="mailto:support@example.com">support@example.com</a></li>
+          <li>Phone: <a href="tel:+18001234567">1-800-123-4567</a></li>
+          <li>Address: 123 Fraud St, Tech City, TX</li>
+        </ul>
+      </div>
+
+      <!-- Documentation / Tutorials -->
+      <div class="section">
+        <h4>Documentation and Tutorials</h4>
+        <p>We have a set of tutorials and guides that can help you navigate and make the best use of the platform. Check them out below:</p>
+        <ul>
+          <li><a href="https://www.example.com/tutorials/setup-guide">Setup Guide</a></li>
+          <li><a href="https://www.example.com/tutorials/using-the-dashboard">Using the Dashboard</a></li>
+          <li><a href="https://www.example.com/tutorials/fraud-detection-rules">Fraud Detection Rules</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Function to simulate logout
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = "login.html"; // Redirect to login page
+    }
+
+    // Navigation logic for smooth scrolling
+    function navigateTo(sectionId) {
+      // Remove active class from all navbar links
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // Add active class to clicked navbar link
+      const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+
+      // Smooth scroll to the section
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+
+</body>
+</html>

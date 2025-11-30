@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credit Card Fraud Detection</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="home2.html" onclick="navigateTo('home')">Home</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="home.html" onclick="logout()">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Credit Card Fraud Detection</h1>
+
+    <div class="input-section">
+      <label for="city">Enter City:</label>
+      <input type="text" id="city" placeholder="Enter city name">
+    </div>
+
+    <div class="options">
+      <label for="timeframe">Select Timeframe:</label>
+      <select id="timeframe">
+        <option value="weekly">Weekly</option>
+        <option value="monthly">Monthly</option>
+        <option value="yearly">Yearly</option>
+      </select>
+    </div>
+
+    <button id="getDataBtn">Get Fraud Data</button>
+
+    <div class="result">
+      <h2 id="reportCity">Fraud Report</h2>
+      <canvas id="fraudChart" width="400" height="200"></canvas>
+      <div id="totalCases"></div>
+    </div>
+  </div>
+
+  
+
+  <!-- JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="index.js"></script>
+
+</body>
+</html>

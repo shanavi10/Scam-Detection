@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fraud Detection Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background-color: #45a049;
+    }
+
+    nav a.active {
+      background-color: #3e8e41;
+    }
+
+    /* Main content container */
+    .container {
+      margin-top: 80px; /* Space for the navbar */
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    /* Section Styles */
+    .section {
+      background-color: white;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .section p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* Fraud Detection Details */
+    .fraud-detection-details {
+      display: block;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .fraud-detection-details h4 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .fraud-type {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .fraud-type button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .fraud-type button:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    /* Fraud type detail */
+    .fraud-type-detail {
+      display: none;
+      text-align: center;
+      min-height: 400px; /* Reserve space even when hidden */
+      padding: 20px;
+    }
+
+    .fraud-type-detail img {
+      max-width: 100%;
+      height: auto;
+      max-height: 400px;
+      margin-top: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      object-fit: contain;
+    }
+
+    .fraud-type-detail h5 {
+      font-size: 26px;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    .fraud-type-detail p {
+      color: #555;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      bottom: 0;
+    }
+
+    .footer p {
+      margin: 0 10px;
+      font-size: 16px;
+    }
+
+    /* Make Footer more responsive */
+    @media (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer p {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="home2.html">Home</a>
+    <a href="home.html" onclick="logout()">Log Out</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Fraud Detection Section -->
+    <div id="fraudDetection" class="section">
+      <h3>Fraud Detection</h3>
+      <p>Learn about the different types of fraud detection methods and how they can help businesses identify fraudulent activities effectively.</p>
+
+      <!-- Fraud Detection Details -->
+      <div class="fraud-detection-details">
+        <h4>Types of Fraud Detection</h4>
+        <div class="fraud-type">
+          <button onclick="showFraudType('credit-card-fraud')">Credit Card Fraud</button>
+          <button onclick="showFraudType('identity-theft')">Identity Theft</button>
+          <button onclick="showFraudType('insurance-fraud')">Insurance Fraud</button>
+        </div>
+
+        <div id="credit-card-fraud" class="fraud-type-detail">
+          <h5>Credit Card Fraud</h5>
+          <p>Credit card fraud occurs when someone uses a stolen or fake credit card to make unauthorized purchases. Detecting this type of fraud involves monitoring transaction patterns for suspicious activity, such as unusual locations or high transaction amounts.</p>
+          <a href="index1.html">
+            <img src="https://i.pinimg.com/736x/1b/26/ed/1b26ed8c8566bc509834183e10053f32.jpg" alt="Credit Card Fraud">
+          </a>
+        </div>
+
+        <div id="identity-theft" class="fraud-type-detail">
+          <h5>Identity Theft</h5>
+          <p>Identity theft involves using someone else's personal information (like Social Security numbers or bank account details) to commit fraud. This is often detected by analyzing changes in personal data usage or monitoring for fraudulent activity.</p>
+          <img src="https://i.pinimg.com/736x/81/21/8e/81218e1df797202540f011b0880e6d1e.jpg" alt="Identity Theft">
+        </div>
+
+        <div id="insurance-fraud" class="fraud-type-detail">
+          <h5>Insurance Fraud</h5>
+          <p>Insurance fraud occurs when a person lies or misrepresents information to receive an undue benefit from an insurance policy. This can include fake claims or exaggerating the damage to property. Detecting such fraud involves comparing claims data to historical trends and analyzing any anomalies.</p>
+          <img src="https://i.pinimg.com/736x/c5/d9/4b/c5d94bfacb822a7f3052d15719c56f55.jpg" alt="Insurance Fraud">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <p>Email: support@example.com</p>
+    <p>Phone: 1-800-123-4567</p>
+    <p>Location: 123 Fraud St, Tech City, TX</p>
+  </div>
+
+  <script>
+    // Function to simulate logout
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = "login.html"; // Redirect to login page
+    }
+
+    // Show specific fraud type detail
+    function showFraudType(type) {
+      // Hide all fraud types
+      const fraudTypes = document.querySelectorAll('.fraud-type-detail');
+      fraudTypes.forEach(fraud => fraud.style.display = 'none');
+
+      // Show the selected fraud type
+      const selectedFraud = document.getElementById(type);
+      if (selectedFraud) {
+        selectedFraud.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 15px;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    nav a:hover {
+      background-color: #0056b3;
+    }
+
+    nav a.active {
+      background-color: #004085;
+    }
+
+    /* Main content container */
+    .container {
+      margin-top: 70px; /* Space for the navbar */
+      padding: 30px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .section {
+      background-color: white;
+      padding: 30px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h3, .section h4 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .section p {
+      color: #555;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Button Styles */
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .section button {
+      margin-top: 15px;
+      width: 200px;
+      margin-right: 10px;
+    }
+
+    /* Switches */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #4CAF50;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="home2.html">home</a>
+    <a href="#settings" onclick="navigateTo('settings')" class="active">Settings</a>
+    <a href="home.html" onclick="logout()">Log Out</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    
+    <!-- Settings Section -->
+    <div id="settings" class="section">
+      <h3>Account & Fraud Detection Settings</h3>
+
+      <!-- Account Settings -->
+      <div class="section">
+        <h4>Account Settings</h4>
+        <p>Change your email, password, and account preferences.</p>
+        <button>Change Email</button>
+        <button>Change Password</button>
+      </div>
+
+      <!-- Fraud Detection Settings -->
+      <div class="section">
+        <h4>Fraud Detection Settings</h4>
+        <p>Set the parameters for detecting fraud. You can enable/disable fraud detection and set thresholds for triggering alerts.</p>
+        <button>Enable Fraud Detection</button>
+        <button>Set Thresholds</button>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="section">
+        <h4>Notification Settings</h4>
+        <p>Choose your preferred method of receiving fraud alerts.</p>
+        <button>Enable Email Notifications</button>
+        <button>Enable SMS Notifications</button>
+      </div>
+
+      <!-- Privacy Settings -->
+      <div class="section">
+        <h4>Privacy Settings</h4>
+        <p>Manage your privacy settings. Enable or disable data sharing, tracking, etc.</p>
+        <div>
+          <label for="data-sharing">Allow Data Sharing</label>
+          <label class="switch">
+            <input type="checkbox" id="data-sharing">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Two-Factor Authentication -->
+      <div class="section">
+        <h4>Two-Factor Authentication</h4>
+        <p>Enable 2FA to add an extra layer of security to your account.</p>
+        <div>
+          <label for="two-fa">Enable Two-Factor Authentication</label>
+          <label class="switch">
+            <input type="checkbox" id="two-fa">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Language Preferences -->
+      <div class="section">
+        <h4>Language Preferences</h4>
+        <p>Select the language for your account interface.</p>
+        <select>
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+        </select>
+      </div>
+
+      <!-- API Key Settings -->
+      <div class="section">
+        <h4>API Key Management</h4>
+        <p>Generate and manage your API keys to integrate fraud detection with your systems.</p>
+        <button>Generate API Key</button>
+        <button>Revoke API Key</button>
+      </div>
+
+      <!-- Save Changes Button -->
+      <div class="section">
+        <button>Save Settings</button>
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    // Function to simulate logout
+    function logout() {
+      alert("You have been logged out.");
+      window.location.href = "login.html"; // Redirect to login page
+    }
+
+    // Navigation logic for smooth scrolling
+    function navigateTo(sectionId) {
+      // Remove active class from all navbar links
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link => link.classList.remove('active'));
+
+      // Add active class to clicked navbar link
+      const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+      if (activeLink) {
+        activeLink.classList.add('active');
+      }
+
+      // Smooth scroll to the section
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
+
+</body>
+</html>
